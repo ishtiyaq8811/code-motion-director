@@ -1,0 +1,50 @@
+{
+  "title": "metrics/benchmark.py",
+  "language": "python",
+  "aspectRatio": "9:16",
+  "theme": "onedark",
+  "code": [
+    "import time",
+    "from functools import wraps",
+    "",
+    "def benchmark(func):",
+    "    @wraps(func)",
+    "    def wrapper(*args, **kwargs):",
+    "        start = time.perf_counter()",
+    "        result = func(*args, **kwargs)",
+    "        elapsed = time.perf_counter() - start",
+    "        print(f'{func.__name__} took {elapsed:.4f}s')",
+    "        return result",
+    "    return wrapper"
+  ],
+  "focusLines": [4, 7, 9],
+  "typingSpeed": 30,
+  "callouts": [
+    {
+      "line": 4,
+      "label": "Decorator Definition",
+      "note": "Wraps target callable",
+      "side": "right"
+    },
+    {
+      "line": 7,
+      "label": "High-Res Timer",
+      "note": "Nanosecond clock timestamp",
+      "side": "right"
+    }
+  ],
+  "terminal": {
+    "enabled": true,
+    "title": "Python 3.12 Virtualenv",
+    "commands": [
+      "$ python -m pytest tests/test_perf.py",
+      "> execute_query took 0.0014s",
+      "> 1 passed in 0.04s [OK]"
+    ]
+  },
+  "sound": {
+    "typewriterClicks": true,
+    "completionChime": true
+  },
+  "durationSeconds": 9.0
+}
