@@ -1,0 +1,46 @@
+{
+  "title": "src/engine/state.rs",
+  "language": "rust",
+  "aspectRatio": "16:9",
+  "theme": "cyberpunk",
+  "code": [
+    "pub fn process_buffer(buf: &mut Vec<u8>) -> Result<(), Error> {",
+    "    if buf.is_empty() {",
+    "        return Err(Error::EmptyBuffer);",
+    "    }",
+    "    buf.retain(|&byte| byte != 0x00);",
+    "    buf.push(0xFF);",
+    "    Ok(())",
+    "}"
+  ],
+  "focusLines": [1, 5],
+  "typingSpeed": 35,
+  "callouts": [
+    {
+      "line": 1,
+      "label": "Mutable Borrow",
+      "note": "Exclusive reference (&mut)",
+      "side": "right"
+    },
+    {
+      "line": 5,
+      "label": "In-Place Filter",
+      "note": "Zero allocation retention",
+      "side": "right"
+    }
+  ],
+  "terminal": {
+    "enabled": true,
+    "title": "Cargo Test (Rustc v1.82)",
+    "commands": [
+      "$ cargo test --release",
+      "   Compiling engine v0.1.0",
+      "   Running unittests: 3 passed; 0 failed"
+    ]
+  },
+  "sound": {
+    "typewriterClicks": true,
+    "completionChime": true
+  },
+  "durationSeconds": 8.0
+}
