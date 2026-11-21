@@ -1,0 +1,45 @@
+{
+  "title": "src/api/session.ts",
+  "language": "typescript",
+  "aspectRatio": "9:16",
+  "theme": "obsidian",
+  "code": [
+    "export async function verifySession(token: string) {",
+    "  const session = await auth.verify(token);",
+    "  if (!session.isValid) {",
+    "    throw new UnauthorizedError('Token Expired');",
+    "  }",
+    "  return session.user;",
+    "}"
+  ],
+  "focusLines": [2, 4],
+  "typingSpeed": 35,
+  "callouts": [
+    {
+      "line": 2,
+      "label": "Async Verifier",
+      "note": "Awaits HMAC-SHA256 signature",
+      "side": "right"
+    },
+    {
+      "line": 4,
+      "label": "Guard Clause",
+      "note": "Rejects expired claims",
+      "side": "right"
+    }
+  ],
+  "terminal": {
+    "enabled": true,
+    "title": "Node.js v22 Terminal",
+    "commands": [
+      "$ curl -X POST https://api.dev/auth/verify",
+      "> Validating JWT payload claims...",
+      "> Token Verified: user_id=4092 [200 OK]"
+    ]
+  },
+  "sound": {
+    "typewriterClicks": true,
+    "completionChime": true
+  },
+  "durationSeconds": 8.0
+}
